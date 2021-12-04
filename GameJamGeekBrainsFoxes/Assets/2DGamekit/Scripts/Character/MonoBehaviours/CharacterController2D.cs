@@ -22,10 +22,12 @@ namespace Gamekit2D
         RaycastHit2D[] m_FoundHits = new RaycastHit2D[3];
         Collider2D[] m_GroundColliders = new Collider2D[3];
         Vector2[] m_RaycastPositions = new Vector2[3];
+        Vector2 vector = new Vector2(1, 0);
 
         public bool IsGrounded { get; protected set; }
         public bool IsCeilinged { get; protected set; }
         public Vector2 Velocity { get; protected set; }
+
         public Rigidbody2D Rigidbody2D { get { return m_Rigidbody2D; } }
         public Collider2D[] GroundColliders { get { return m_GroundColliders; } }
         public ContactFilter2D ContactFilter { get { return m_ContactFilter; } }
@@ -48,8 +50,10 @@ namespace Gamekit2D
 
         void FixedUpdate()
         {
+            //m_NextMovement = vector;
             m_PreviousPosition = m_Rigidbody2D.position;
             m_CurrentPosition = m_PreviousPosition + m_NextMovement;
+
             Velocity = (m_CurrentPosition - m_PreviousPosition) / Time.deltaTime;
 
             m_Rigidbody2D.MovePosition(m_CurrentPosition);

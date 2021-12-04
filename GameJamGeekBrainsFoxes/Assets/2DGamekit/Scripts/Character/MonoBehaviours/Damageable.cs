@@ -37,6 +37,9 @@ namespace Gamekit2D
         protected Vector2 m_DamageDirection;
         protected bool m_ResetHealthOnSceneReload;
 
+        public GameObject enemySoul;
+        public Transform soulPoint;
+
         public int CurrentHealth
         {
             get { return m_CurrentHealth; }
@@ -55,6 +58,7 @@ namespace Gamekit2D
         void OnDisable()
         {
             PersistentDataManager.UnregisterPersister(this);
+            Instantiate(enemySoul, soulPoint.position, soulPoint.rotation);
         }
 
         void Update()
@@ -110,6 +114,8 @@ namespace Gamekit2D
                 m_ResetHealthOnSceneReload = true;
                 EnableInvulnerability();
                 if (disableOnDeath) gameObject.SetActive(false);
+                //Instantiate(enemySoul, transform.parent = gameObject.transform);
+                //enemySoul.transform.position = transform.position;
             }
         }
 

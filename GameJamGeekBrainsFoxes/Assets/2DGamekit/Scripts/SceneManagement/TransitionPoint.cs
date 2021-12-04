@@ -46,6 +46,7 @@ namespace Gamekit2D
         {
             if (transitionWhen == TransitionWhen.ExternalCall)
                 m_TransitioningGameObjectPresent = true;
+            transitioningGameObject = GameObject.FindGameObjectWithTag("Player");
         }
 
         void OnTriggerEnter2D (Collider2D other)

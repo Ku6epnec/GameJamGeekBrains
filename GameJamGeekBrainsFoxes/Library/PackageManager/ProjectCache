@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637741473237315313
-    m_Hash: 3125392205
+      ticks: 637741510629730282
+    m_Hash: 3550012810
   m_LockFileStatus:
     m_FilePath: C:/Unity/GameJamGeekBrains/GameJamGeekBrainsFoxes/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637741473278791866
-    m_Hash: 2955192054
+      ticks: 637741510629730282
+    m_Hash: 720754368
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
