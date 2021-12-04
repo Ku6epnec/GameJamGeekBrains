@@ -7,6 +7,7 @@ namespace Gamekit2D
     [RequireComponent(typeof(Collider2D))]
     public class TransitionPoint : MonoBehaviour
     {
+        public GameObject explose;
         public enum TransitionType
         {
             DifferentZone, DifferentNonGameplayScene, SameScene,

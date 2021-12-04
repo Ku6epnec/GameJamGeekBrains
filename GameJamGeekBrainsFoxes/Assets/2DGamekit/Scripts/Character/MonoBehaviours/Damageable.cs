@@ -58,7 +58,6 @@ namespace Gamekit2D
         void OnDisable()
         {
             PersistentDataManager.UnregisterPersister(this);
-            Instantiate(enemySoul, soulPoint.position, soulPoint.rotation);
         }
 
         void Update()
@@ -113,9 +112,8 @@ namespace Gamekit2D
                 OnDie.Invoke(damager, this);
                 m_ResetHealthOnSceneReload = true;
                 EnableInvulnerability();
-                if (disableOnDeath) gameObject.SetActive(false);
-                //Instantiate(enemySoul, transform.parent = gameObject.transform);
-                //enemySoul.transform.position = transform.position;
+                if (disableOnDeath) gameObject.SetActive(false);  
+                Instantiate(enemySoul, soulPoint.position, soulPoint.rotation);
             }
         }
 

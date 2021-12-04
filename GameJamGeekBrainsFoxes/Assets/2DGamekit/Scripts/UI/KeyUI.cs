@@ -42,8 +42,6 @@ namespace Gamekit2D
                 healthIconRect.anchorMax -= new Vector2(k_KeyIconAnchorWidth, 0f) * i;
                 m_KeyIconAnimators[i] = healthIcon.GetComponent<Animator>();
             }
-
-            
         }
 
         public void ChangeKeyUI(InventoryController controller)

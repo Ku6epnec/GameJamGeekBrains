@@ -296,6 +296,8 @@ GameObject:
   - component: {fileID: 114680495344679792}
   - component: {fileID: 114621962236214084}
   - component: {fileID: 1141565058}
+  - component: {fileID: 1141565059}
+  - component: {fileID: 1141565046}
   m_Layer: 13
   m_Name: Ellen
   m_TagString: Player
@@ -484,6 +486,10 @@ MonoBehaviour:
     key: 32
     controllerButton: 1
     m_Enabled: 1
+  Teleport:
+    key: 112
+    controllerButton: 10
+    m_Enabled: 1
   Horizontal:
     positive: 100
     negative: 97
@@ -624,7 +630,10 @@ MonoBehaviour:
   dataSettings:
     dataTag: PlayerHealth
     persistenceType: 3
-  enemySoul: {fileID: 0}
+  enemySoul: {fileID: 8449875204681529242, guid: 06ca148769dfec34db9898ee89127ef4,
+    type: 3}
+  soulPoint: {fileID: 8449875204681529314, guid: 06ca148769dfec34db9898ee89127ef4,
+    type: 3}
 --- !u!114 &114460243114916098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -931,6 +940,38 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1141565059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125256590603436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37320e58cc1ecfd40a3bca30ab8f4617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteOriginallyFacesLeft: 0
+  soulBullet: {fileID: 1987562170434855141, guid: d5ad1b27d6d14b54ca4617b9d314e693,
+    type: 3}
+  exolosion: {fileID: 5344595843396702787, guid: e9311f63ea6a738419960ad73a37158b,
+    type: 3}
+  soulCount: 0
+  soulSpawnPoint: {fileID: 4929711121330312}
+--- !u!114 &1141565046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125256590603436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb76f9807bbca04d9930aab65ecd494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explose: {fileID: 5344595843396702787, guid: e9311f63ea6a738419960ad73a37158b, type: 3}
 --- !u!1 &1181578502863468
 GameObject:
   m_ObjectHideFlags: 0

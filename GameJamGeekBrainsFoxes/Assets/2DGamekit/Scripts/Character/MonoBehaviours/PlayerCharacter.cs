@@ -566,6 +566,11 @@ namespace Gamekit2D
             return PlayerInput.Instance.Jump.Down;
         }
 
+        public bool CheckForTeleportInput()
+        {
+            return PlayerInput.Instance.Teleport.Down;
+        }
+
         public bool CheckForFallInput()
         {
             return PlayerInput.Instance.Vertical.Value < -float.Epsilon && PlayerInput.Instance.Jump.Down;
