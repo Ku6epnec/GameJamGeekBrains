@@ -26,6 +26,8 @@ namespace Gamekit2D
             builder.AppendFormat("{0} - Jump\n", PlayerInput.Instance.Jump.key.ToString());
             builder.AppendFormat("{0} - Fire range weapon\n", PlayerInput.Instance.RangedAttack.key.ToString());
             builder.AppendFormat("{0} - Melee Attack\n", PlayerInput.Instance.MeleeAttack.key.ToString());
+            builder.AppendFormat("{0} - SoulShoot\n", "I");
+            builder.AppendFormat("{0} - Teleport\n", PlayerInput.Instance.Teleport.key.ToString());
             builder.AppendFormat("{0} - Pause Menu\n", PlayerInput.Instance.Pause.key.ToString());
 
             textUI.SetText(builder);

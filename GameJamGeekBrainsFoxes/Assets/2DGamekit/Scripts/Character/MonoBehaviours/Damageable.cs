@@ -166,7 +166,5 @@ namespace Gamekit2D
             m_CurrentHealth = healthData.value1 ? startingHealth : healthData.value0;
             OnHealthSet.Invoke(this);
         }
-
-
     }
 }

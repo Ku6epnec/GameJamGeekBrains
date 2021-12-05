@@ -5,7 +5,7 @@ namespace Gamekit2D
     public class SoulUI : MonoBehaviour
     {
         public static SoulUI Instance { get; protected set; }
-
+        public int soulCount;
         public GameObject soulIconPrefab;
         public string[] soulNames;
 

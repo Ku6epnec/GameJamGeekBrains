@@ -19,7 +19,8 @@ namespace Gamekit2D
         public InputButton MeleeAttack = new InputButton(KeyCode.K, XboxControllerButtons.X);
         public InputButton RangedAttack = new InputButton(KeyCode.O, XboxControllerButtons.B);
         public InputButton Jump = new InputButton(KeyCode.Space, XboxControllerButtons.A);
-        public InputButton Teleport = new InputButton(KeyCode.P,  XboxControllerButtons.RightBumper);
+        public InputButton Teleport = new InputButton(KeyCode.I,  XboxControllerButtons.RightBumper);
+        public InputButton SoulShoot = new InputButton(KeyCode.P, XboxControllerButtons.LeftBumper);
         public InputAxis Horizontal = new InputAxis(KeyCode.D, KeyCode.A, XboxControllerAxes.LeftstickHorizontal);
         public InputAxis Vertical = new InputAxis(KeyCode.W, KeyCode.S, XboxControllerAxes.LeftstickVertical);
         [HideInInspector]
@@ -61,6 +62,7 @@ namespace Gamekit2D
             MeleeAttack.Get(fixedUpdateHappened, inputType);
             RangedAttack.Get(fixedUpdateHappened, inputType);
             Jump.Get(fixedUpdateHappened, inputType);
+            SoulShoot.Get(fixedUpdateHappened, inputType);
             Teleport.Get(fixedUpdateHappened, inputType);
             Horizontal.Get(inputType);
             Vertical.Get(inputType);
@@ -80,6 +82,7 @@ namespace Gamekit2D
             GainControl(MeleeAttack);
             GainControl(RangedAttack);
             GainControl(Jump);
+            GainControl(SoulShoot);
             GainControl(Teleport);
             GainControl(Horizontal);
             GainControl(Vertical);
@@ -94,6 +97,7 @@ namespace Gamekit2D
             ReleaseControl(MeleeAttack, resetValues);
             ReleaseControl(RangedAttack, resetValues);
             ReleaseControl(Jump, resetValues);
+            ReleaseControl(SoulShoot, resetValues);
             ReleaseControl(Teleport, resetValues);
             ReleaseControl(Horizontal, resetValues);
             ReleaseControl(Vertical, resetValues);
