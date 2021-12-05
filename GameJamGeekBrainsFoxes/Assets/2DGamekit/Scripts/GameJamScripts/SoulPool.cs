@@ -1,67 +1,76 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+
 
 namespace Gamekit2D
 {
     public class SoulPool : MonoBehaviour
     {
-        public bool spriteOriginallyFacesLeft;
-        public bool reinforced = false;
+        #region Fields
+
+        [SerializeField] private GameObject[] soulUI;
+        [SerializeField] private GameObject soulBullet;
+        [SerializeField] private GameObject exolosion;
+        [SerializeField] private Transform soulSpawnPointR;
+        [SerializeField] private Transform soulSpawnPointL;
+
+        [SerializeField] private int _soulCount = 0;
+
+        [SerializeField] private float _maxSoulLifeTime = 5;
+        [SerializeField] private float _soulBulletLifeTime = 5;
+
+        [SerializeField] private bool _spriteOriginallyFacesLeft;
+        [SerializeField] private bool _slCheck = false;
+        [SerializeField] private bool _reinforced = false;
+
         protected SpriteRenderer m_SpriteRenderer;
-        public GameObject[] soulUI;
+        const float k_OffScreenError = 0.01f;
         static readonly int VFX_HASH = VFXController.StringToHash("BulletImpact");
 
-        const float k_OffScreenError = 0.01f;
+        private GameObject sl;
+        private GameObject expl;
 
-        protected float m_Timer;
+        private int _soulCountMax = 3;
+
+
+        #endregion
+
+        #region UnityMethods
 
         private void OnEnable()
         {
-
             m_SpriteRenderer = GetComponent<SpriteRenderer>();
-            m_Timer = 0.0f;
-        }
 
-        public float maxSoulLifeTime = 5;
-        public float soulBulletLifeTime = 5;
-        public GameObject soulBullet;
-        public GameObject exolosion;
-        public int soulCount = 0;
-        public Transform soulSpawnPointR;
-        public Transform soulSpawnPointL;
-        private int soulCountMax = 3;
-        private GameObject sl;
-        private GameObject expl;
-        private bool slCheck = false;
+        }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.P) && !slCheck)
+            if (Input.GetKeyDown(KeyCode.P) && !_slCheck)
             {
                 FireSoul();
             }
-            if (slCheck)
+
+            if (_slCheck)
             {
-                if (soulBulletLifeTime > 0f)
+                if (_soulBulletLifeTime > 0f)
                 {
-                    soulBulletLifeTime = soulBulletLifeTime - Time.deltaTime;
+                    _soulBulletLifeTime = _soulBulletLifeTime - Time.deltaTime;
                 }
                 else
                 {
                     Destroy(sl);
-                    slCheck = false;
-                    soulBulletLifeTime = maxSoulLifeTime;
+                    _slCheck = false;
+                    _soulBulletLifeTime = _maxSoulLifeTime;
                 }
+
                 if (Input.GetKeyDown(KeyCode.I))
                 {
                     transform.position = sl.transform.position;
                     expl = Instantiate(exolosion, transform); 
                     Destroy(sl, 0f);
                     Destroy(expl, 2f);
-                    slCheck = false;
-                    soulBulletLifeTime = maxSoulLifeTime;
+                    _slCheck = false;
+                    _soulBulletLifeTime = _maxSoulLifeTime;
                 }
             }
         }
@@ -71,30 +80,34 @@ namespace Gamekit2D
             if (collision.gameObject.tag == "Soul")
                 AddSoul();
             if (collision.gameObject.tag == "Upgrade")
-                reinforced = true;
-
+                _reinforced = true;
         }
 
-        public void AddSoul()
+        #endregion
+
+        #region OutherMethods
+        private void AddSoul()
         {
-            if (soulCount < soulCountMax)
+            if (_soulCount < _soulCountMax)
             {
-                soulUI[soulCount].SetActive(true);
-                soulCount++;
+                soulUI[_soulCount].SetActive(true);
+                _soulCount++;
             }
 
         }
 
-        public void FireSoul()
+        private void FireSoul()
         {
-            if (soulCount == soulCountMax && reinforced)
+            if (_soulCount == _soulCountMax && _reinforced)
             { 
-                for (soulCount = 0; soulCount < soulCountMax; soulCount++)
+                for (_soulCount = 0; _soulCount < _soulCountMax; _soulCount++)
                     {
-                    soulUI[soulCount].SetActive(false);
+                    soulUI[_soulCount].SetActive(false);
                     }
+
                 sl = Instantiate(soulBullet, transform.parent);                
                 SpriteRenderer sl_spriteRenderer = sl.GetComponent<SpriteRenderer>();
+
                 if (m_SpriteRenderer.flipX)
                 {
                     sl.transform.position = soulSpawnPointL.position;
@@ -105,13 +118,9 @@ namespace Gamekit2D
                     sl.transform.position = soulSpawnPointR.position;
                     sl_spriteRenderer.flipX = false;
                 }
-                soulCount = 0; slCheck = true; }
+                _soulCount = 0; _slCheck = true; 
+            }
         }
-
-        /*public void UpgradeSoulAbility()
-        {
-            reinforced = true;
-        }*/
 
         public void OnHitDamageable(Damager origin, Damageable damageable)
         {
@@ -125,12 +134,14 @@ namespace Gamekit2D
 
         protected void FindSurface(Collider2D collider)
         {
-            Vector3 forward = spriteOriginallyFacesLeft ? Vector3.left : Vector3.right;
+            Vector3 forward = _spriteOriginallyFacesLeft ? Vector3.left : Vector3.right;
             if (m_SpriteRenderer.flipX) forward.x = -forward.x;
 
             TileBase surfaceHit = PhysicsHelper.FindTileForOverride(collider, transform.position, forward);
 
             VFXController.Instance.Trigger(VFX_HASH, transform.position, 0, m_SpriteRenderer.flipX, null, surfaceHit);
         }
+
+        #endregion
     }
 }
